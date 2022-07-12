@@ -19,6 +19,13 @@ app.get("/restaurants/:restaurant_id", (req, res) => {
 	});
 	res.render("show", { restaurant });
 });
+app.get("/search", (req, res) => {
+	const keyword = req.query.keyword;
+	const searchResult = restaurantList.results.filter(
+		(rest) => rest.name.includes(keyword) || rest.category.includes(keyword)
+	);
+	res.render("index", { restaurants: searchResult });
+});
 
 app.listen(port, () => {
 	console.log(`http://localhost:${port}`);
