@@ -13,6 +13,13 @@ app.get("/", (req, res) => {
 	res.render("index", { restaurants: restaurantList.results });
 });
 
+app.get("/restaurants/:restaurant_id", (req, res) => {
+	const restaurant = restaurantList.results.find((rest) => {
+		return rest.id.toString() === req.params.restaurant_id;
+	});
+	res.render("show", { restaurant });
+});
+
 app.listen(port, () => {
 	console.log(`http://localhost:${port}`);
 });
