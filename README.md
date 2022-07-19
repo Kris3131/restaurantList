@@ -49,4 +49,6 @@
 4. 啟動 localhost server
    `npm run dev`
 
+## 專案畫面
+
 ![Alt Text](./public/images/restaurantList.gif)
