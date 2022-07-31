@@ -1,9 +1,19 @@
 const express = require('express');
 const exphbrs = require('express-handlebars');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv').config();
 const restaurantList = require('./restaurant.json');
 
 const app = express();
 const port = 3000;
+
+mongoose.connect(process.env.MONGO_URI, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+});
+const db = mongoose.connection;
+db.on('error', () => console.log('connect error'));
+db.once('open', () => console.log('connect success'));
 
 app.engine('handlebars', exphbrs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
