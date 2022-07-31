@@ -2,7 +2,7 @@ const express = require('express');
 const exphbrs = require('express-handlebars');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
-const restaurantList = require('./restaurant.json');
+const Restaurant = require('./models/Restaurant');
 
 const app = express();
 const port = 3000;
@@ -20,7 +20,10 @@ app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-	res.render('index', { restaurants: restaurantList.results });
+	Restaurant.find()
+		.lean()
+		.then((restaurants) => res.render('index', { restaurants }))
+		.catch((err) => console.log(err));
 });
 
 app.get('/restaurants/:restaurant_id', (req, res) => {
