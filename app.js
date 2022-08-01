@@ -64,6 +64,13 @@ app.post('/restaurants/:id/edit', (req, res) => {
 		.then(() => res.redirect('/'))
 		.catch((err) => console.log(err));
 });
+app.post('/restaurants/:id/delete', (req, res) => {
+	const id = req.params.id;
+	console.log(id);
+	Restaurant.findByIdAndRemove(id)
+		.then(() => res.redirect('/'))
+		.catch((err) => console.log(err));
+});
 // app.get('/search', (req, res) => {
 // 	const keyword = req.query.keyword;
 // 	const searchResult = restaurantList.results.filter(
