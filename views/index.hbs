@@ -3,7 +3,9 @@
 	<div class='search-bar-outer'>
 		<div class='search-bar-inner'>
 			<form action='/search'>
-				<h4 class='mb-2'><label for='searchRestaurant'>尋找餐廳：</label></h4>
+				<h4 class='mb-2'><label
+						for='searchRestaurant'
+					>尋找餐廳：</label></h4>
 				<div class='input-group'>
 					<input
 						id='searchRestaurant'
@@ -17,9 +19,11 @@
 						aria-describedby='search-button'
 					/>
 					<div class='input-group-append'>
-						<button class='btn btn-major' type='submit' id='search-button'><i
-								class='fas fa-search'
-							></i></button>
+						<button
+							class='btn btn-major'
+							type='submit'
+							id='search-button'
+						><i class='fas fa-search'></i></button>
 					</div>
 					<a
 						href='/restaurants/new'
@@ -50,7 +54,9 @@
 								{{this.category}}
 							</div>
 							<div>
-								<span class='badge badge-pill badge-danger font-weight-normal'>
+								<span
+									class='badge badge-pill badge-danger font-weight-normal'
+								>
 									{{this.rating}}
 									<i class='fas fa-star fa-xs'></i>
 								</span>
@@ -61,7 +67,7 @@
 										class='text-white'
 									>Detail</a></button>
 								<button type='button' class='btn btn-primary'><a
-										href='#'
+										href='/restaurants/{{this._id}}/edit'
 										class='text-white'
 									>Edit</a></button>
 								<button type='button' class='btn btn-primary'><a

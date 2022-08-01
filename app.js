@@ -29,6 +29,7 @@ app.get('/', (req, res) => {
 		.catch((err) => console.log(err));
 });
 
+// 新增餐廳資料
 app.get('/restaurants/new', (req, res) => {
 	res.render('new');
 });
@@ -45,6 +46,22 @@ app.get('/restaurants/:id', (req, res) => {
 	Restaurant.findById(id)
 		.lean()
 		.then((restaurant) => res.render('show', { restaurant }))
+		.catch((err) => console.log(err));
+});
+
+app.get('/restaurants/:id/edit', (req, res) => {
+	const id = req.params.id;
+	Restaurant.findById(id)
+		.lean()
+		.then((restaurant) => res.render('edit', { restaurant }))
+		.catch((err) => console.log(err));
+});
+
+app.post('/restaurants/:id/edit', (req, res) => {
+	const id = req.params.id;
+	const restaurantUpdate = req.body;
+	Restaurant.findByIdAndUpdate(id, restaurantUpdate)
+		.then(() => res.redirect('/'))
 		.catch((err) => console.log(err));
 });
 // app.get('/search', (req, res) => {
