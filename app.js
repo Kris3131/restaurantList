@@ -19,12 +19,23 @@ db.once('open', () => console.log('connect success'));
 app.engine('hbs', exphbrs({ defaultLayout: 'main', extname: '.hbs' }));
 app.set('view engine', 'hbs');
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
 
 // 瀏覽全部餐廳資料
 app.get('/', (req, res) => {
 	Restaurant.find()
 		.lean()
 		.then((restaurants) => res.render('index', { restaurants }))
+		.catch((err) => console.log(err));
+});
+
+app.get('/restaurants/new', (req, res) => {
+	res.render('new');
+});
+
+app.post('/restaurants', (req, res) => {
+	Restaurant.create(req.body)
+		.then(() => res.redirect('/'))
 		.catch((err) => console.log(err));
 });
 
@@ -35,10 +46,6 @@ app.get('/restaurants/:id', (req, res) => {
 		.lean()
 		.then((restaurant) => res.render('show', { restaurant }))
 		.catch((err) => console.log(err));
-});
-
-app.get('/restaurants/new', (req, res) => {
-	res.render('new');
 });
 // app.get('/search', (req, res) => {
 // 	const keyword = req.query.keyword;

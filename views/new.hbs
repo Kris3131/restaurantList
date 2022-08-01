@@ -1,1 +1,115 @@
-<h1>Hello</h1>
+<div class='container'>
+	<h1 class='fs-1'>新增餐廳</h1>
+	<form action='/restaurants' method='POST'>
+		<div class='mb-3'>
+			<label for='name' class='form-label'>中文名稱</label>
+			<input
+				type='text'
+				class='form-control'
+				id='name'
+				name='name'
+				placeholder='麥當勞...'
+				required
+			/>
+		</div>
+		<div class='mb-3'>
+			<label for='name_en' class='form-label'>英文名稱</label>
+			<input
+				type='text'
+				class='form-control'
+				id='name_en'
+				name='name_en'
+				placeholder='McDonald...'
+				required
+			/>
+		</div>
+		<div class='mb-3'>
+			<label for='category' class='form-label'>類別</label>
+			<input
+				list='title'
+				class='form-control'
+				id='category'
+				name='category'
+				placeholder='韓式料理...'
+				required
+			/>
+			<datalist id='title'>
+				<option>中東料理</option>
+				<option>日本料理</option>
+				<option>義式餐廳</option>
+				<option>美式</option>
+				<option>酒吧</option>
+				<option>咖啡</option>
+			</datalist>
+		</div>
+		<div class='mb-3'>
+			<label for='image' class='form-label'>圖片連結</label>
+			<input
+				type='text'
+				class='form-control'
+				id='image'
+				name='image'
+				placeholder='https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5634/08.jpg...'
+				required
+			/>
+		</div>
+		<div class='mb-3'>
+			<label for='location' class='form-label'>地址</label>
+			<input
+				type='text'
+				class='form-control'
+				id='location'
+				name='location'
+				placeholder='台北市松山區市民大道四段 185 號...'
+				required
+			/>
+		</div>
+		<div class='mb-3'>
+			<label for='phone' class='form-label'>電話</label>
+			<input
+				type='text'
+				class='form-control'
+				id='phone'
+				name='phone'
+				placeholder='02 2570 1255'
+				required
+			/>
+		</div>
+		<div class='mb-3'>
+			<label for='google_map' class='form-label'>Google Map連結</label>
+			<input
+				type='text'
+				class='form-control'
+				id='google_map'
+				name='google_map'
+				placeholder='https://goo.gl/maps/V9mKwVJ4s5v'
+				required
+			/>
+		</div>
+		<div class='mb-3'>
+			<label for='rating' class='form-label'>評分</label>
+			<input
+				type='text'
+				class='form-control'
+				id='rating'
+				name='rating'
+				min='0'
+				max='5'
+				placeholder='4.9'
+				required
+			/>
+		</div>
+		<div class='mb-3'>
+			<label for='description' class='form-label'>評論</label>
+			<input
+				type='text'
+				class='form-control'
+				id='description'
+				name='description'
+				placeholder='超好吃的啦'
+				required
+			/>
+		</div>
+		<button type='submit' class='btn btn-primary'>Submit</button>
+	</form>
+</div>
