@@ -34,7 +34,7 @@
 			<div class='card-columns m-1'>
 				{{#each restaurants}}
 					<a href='/restaurants/{{this._id}}' class='text-secondary'>
-						<div class='card shadow mb-3'>
+						<div class='card mb-3'>
 							<img
 								class='card-img-top'
 								src='{{this.image}}'
@@ -53,6 +53,16 @@
 							</div>
 						</div>
 					</a>
+					<div class='mb-3 d-flex justify-content-around'>
+						<button type='button' class='btn btn-primary'><a
+								href='#'
+								class='text-white'
+							>Edit</a></button>
+						<button type='button' class='btn btn-primary'><a
+								href='#'
+								class='text-white'
+							>Delete</a></button>
+					</div>
 				{{/each}}
 			</div>
 		</div>
