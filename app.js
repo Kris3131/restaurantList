@@ -35,6 +35,10 @@ app.get('/restaurants/:id', (req, res) => {
 		.then((restaurant) => res.render('show', { restaurant }))
 		.catch((err) => console.log(err));
 });
+
+app.get('/restaurants/new', (req, res) => {
+	res.render('new');
+});
 // app.get('/search', (req, res) => {
 // 	const keyword = req.query.keyword;
 // 	const searchResult = restaurantList.results.filter(
