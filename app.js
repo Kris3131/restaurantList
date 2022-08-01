@@ -19,6 +19,7 @@ app.engine('hbs', exphbrs({ defaultLayout: 'main', extname: '.hbs' }));
 app.set('view engine', 'hbs');
 app.use(express.static('public'));
 
+// 瀏覽全部餐廳資料
 app.get('/', (req, res) => {
 	Restaurant.find()
 		.lean()
@@ -26,12 +27,14 @@ app.get('/', (req, res) => {
 		.catch((err) => console.log(err));
 });
 
-// app.get('/restaurants/:restaurant_id', (req, res) => {
-// 	const restaurant = restaurantList.results.find(
-// 		(rest) => rest.id.toString() === req.params.restaurant_id
-// 	);
-// 	res.render('show', { restaurant });
-// });
+// 瀏覽單一餐廳
+app.get('/restaurants/:id', (req, res) => {
+	const id = req.params.id;
+	Restaurant.findById(id)
+		.lean()
+		.then((restaurant) => res.render('show', { restaurant }))
+		.catch((err) => console.log(err));
+});
 // app.get('/search', (req, res) => {
 // 	const keyword = req.query.keyword;
 // 	const searchResult = restaurantList.results.filter(
