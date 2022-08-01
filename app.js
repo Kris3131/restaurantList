@@ -15,8 +15,8 @@ const db = mongoose.connection;
 db.on('error', () => console.log('connect error'));
 db.once('open', () => console.log('connect success'));
 
-app.engine('handlebars', exphbrs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
+app.engine('hbs', exphbrs({ defaultLayout: 'main', extname: '.hbs' }));
+app.set('view engine', 'hbs');
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
@@ -26,19 +26,19 @@ app.get('/', (req, res) => {
 		.catch((err) => console.log(err));
 });
 
-app.get('/restaurants/:restaurant_id', (req, res) => {
-	const restaurant = restaurantList.results.find(
-		(rest) => rest.id.toString() === req.params.restaurant_id
-	);
-	res.render('show', { restaurant });
-});
-app.get('/search', (req, res) => {
-	const keyword = req.query.keyword;
-	const searchResult = restaurantList.results.filter(
-		(rest) => rest.name.includes(keyword) || rest.category.includes(keyword)
-	);
-	res.render('index', { restaurants: searchResult, keyword: keyword });
-});
+// app.get('/restaurants/:restaurant_id', (req, res) => {
+// 	const restaurant = restaurantList.results.find(
+// 		(rest) => rest.id.toString() === req.params.restaurant_id
+// 	);
+// 	res.render('show', { restaurant });
+// });
+// app.get('/search', (req, res) => {
+// 	const keyword = req.query.keyword;
+// 	const searchResult = restaurantList.results.filter(
+// 		(rest) => rest.name.includes(keyword) || rest.category.includes(keyword)
+// 	);
+// 	res.render('index', { restaurants: searchResult, keyword: keyword });
+// });
 
 app.listen(port, () => {
 	console.log(`http://localhost:${port}`);
