@@ -44,8 +44,6 @@ app.get('/search', (req, res) => {
 					item.name.trim().toLowerCase().includes(keywordLowerCase) ||
 					item.category.includes(keywordLowerCase)
 			);
-			{
-			}
 			res.render('index', { restaurants: filterRestaurant, keyword });
 		})
 		.catch((err) => console.log(err));
@@ -93,13 +91,6 @@ app.post('/restaurants/:id/delete', (req, res) => {
 		.then(() => res.redirect('/'))
 		.catch((err) => console.log(err));
 });
-// app.get('/search', (req, res) => {
-// 	const keyword = req.query.keyword;
-// 	const searchResult = restaurantList.results.filter(
-// 		(rest) => rest.name.includes(keyword) || rest.category.includes(keyword)
-// 	);
-// 	res.render('index', { restaurants: searchResult, keyword: keyword });
-// });
 
 app.listen(port, () => {
 	console.log(`http://localhost:${port}`);
