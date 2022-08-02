@@ -1,6 +1,6 @@
 # Restaurant List
 
-使用者可以在首頁看到所有餐廳與它們的簡單資料
+使用者可以在首頁看到所有餐廳與餐廳資料，並可以透過『新增』，增加喜愛的餐廳，『修改』調整喜愛餐廳的內容，『刪除』移除喜愛的餐廳。
 
 ## 專案功能
 
@@ -23,6 +23,9 @@
 
 3. 透過搜尋餐廳名稱來找到特定的餐廳
 4. 透過搜尋餐廳類別來找到特定的餐廳
+5. 透過『新增』，增加喜愛的餐廳
+6. 透過『修改』，調整喜愛餐廳的內容
+7. 透過『刪除』，移除喜愛的餐廳
 
 ## 環境建置與需求
 
@@ -30,11 +33,15 @@
 - [Express.js@4.16.4][express]
 - [nodemon][nodemon]
 - [express-handlebars@3.0.0][exphbs]
+- [mongoose@6.0.5][mongoose]
+- [dotenv@16.0.1][dotenv]
 
 [node]: https://nodejs.org/en/
 [nodemon]: https://www.npmjs.com/package/nodemon
 [express]: https://www.npmjs.com/package/express
 [exphbs]: https://www.npmjs.com/package/express-handlebars
+[mongoose]: https://www.npmjs.com/package//mongoose
+[dotenv]: https://www.npmjs.com/package/dotenv
 
 ## 安裝與執行步驟
 
@@ -48,6 +55,11 @@
    `npm install`
 4. 啟動 localhost server
    `npm run dev`
+5. 資料庫串接
+   - 建立`.env`檔案
+   - 將 MONGO_URI 放進檔案中
+6. 建立種子資料與資料庫連接
+   `npm run seed`
 
 ## 專案畫面
 
