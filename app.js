@@ -29,6 +29,28 @@ app.get('/', (req, res) => {
 		.catch((err) => console.log(err));
 });
 
+// 搜尋餐廳
+app.get('/search', (req, res) => {
+	const keyword = req.query.keyword;
+	if (!keyword) {
+		res.redirect('/');
+	}
+	const keywordLowerCase = keyword.trim().toLowerCase();
+	Restaurant.find()
+		.lean()
+		.then((restaurant) => {
+			const filterRestaurant = restaurant.filter(
+				(item) =>
+					item.name.trim().toLowerCase().includes(keywordLowerCase) ||
+					item.category.includes(keywordLowerCase)
+			);
+			{
+			}
+			res.render('index', { restaurants: filterRestaurant, keyword });
+		})
+		.catch((err) => console.log(err));
+});
+
 // 新增餐廳資料
 app.get('/restaurants/new', (req, res) => {
 	res.render('new');
