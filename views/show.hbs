@@ -1,7 +1,9 @@
 <h1 class='mb-1 restaurant-show-title'>{{{restaurant.name}}}</h1>
 <div class='container'>
 	<div class='row'>
-		<div class='col-12 col-md-10 mx-auto'>
+		<div
+			class='col-12 col-md-10 mx-auto d-flex flex-column justify-content-center align-items-center'
+		>
 
 			<p class='mb-1'>
 				<span class='text-secondary'>
@@ -37,13 +39,29 @@
 			<p class='mb-5'>
 				{{{restaurant.description}}}
 			</p>
-
 			<img
 				class='rounded mx-auto d-block mb-4 w-100'
 				src='{{restaurant.image}}'
 				alt='{{restaurant.image}}'
 				style='max-width: 600px;'
 			/>
+			<div class='m-4'>
+				<button type='button' class='btn btn-primary m-1'><a
+						href='/'
+						class='text-white'
+					>返回</a></button>
+				<button type='button' class='btn btn-primary m-1'><a
+						href='/restaurants/{{restaurant._id}}/edit'
+						class='text-white'
+					>編輯</a></button>
+				<form
+					action='/restaurants/{{restaurant._id}}/delete'
+					method='POST'
+					class='d-inline-flex'
+				>
+					<button type='submit' class='btn btn-danger m-1'>刪除</button>
+				</form>
+			</div>
 		</div>
 	</div>
 </div>
