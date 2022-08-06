@@ -5,12 +5,12 @@ const Restaurant = require('../../models/Restaurant')
 
 router.get('/', (req, res) => {
 	const sortOption = req.query.sort
-
 	if (!sortOption) {
 		Restaurant.find()
 			.lean()
 			.then((restaurants) => res.render('index', { restaurants }))
 			.catch((err) => console.log(err))
+		return
 	}
 	if (sortOption === 'asc') {
 		Restaurant.find()
@@ -18,12 +18,14 @@ router.get('/', (req, res) => {
 			.sort({ name_en: 'asc' })
 			.then((restaurants) => res.render('index', { restaurants }))
 			.catch((err) => console.log(err))
+		return
 	} else if (sortOption === 'desc') {
 		Restaurant.find()
 			.lean()
 			.sort({ name_en: 'desc' })
 			.then((restaurants) => res.render('index', { restaurants }))
 			.catch((err) => console.log(err))
+		return
 	} else if (sortOption === 'category') {
 		Restaurant.find()
 			.lean()
