@@ -12,6 +12,7 @@
 - 餐廳名稱
 - 餐廳分類
 - 餐廳評分
+- 首頁可以調整餐廳排序
 
 2. 餐廳的詳細資訊:
 
@@ -35,6 +36,7 @@
 - [express-handlebars@3.0.0][exphbs]
 - [mongoose@6.0.5][mongoose]
 - [dotenv@16.0.1][dotenv]
+- [method-override@3.0.0][method-override]
 
 [node]: https://nodejs.org/en/
 [nodemon]: https://www.npmjs.com/package/nodemon
@@ -42,6 +44,7 @@
 [exphbs]: https://www.npmjs.com/package/express-handlebars
 [mongoose]: https://www.npmjs.com/package//mongoose
 [dotenv]: https://www.npmjs.com/package/dotenv
+[method-override]: https://www.npmjs.com/package/method-override
 
 ## 安裝與執行步驟
 
@@ -64,3 +67,4 @@
 ## 專案畫面
 
 ![Alt Text](./public/images/restaurantList.gif)
+![Alt Text](./public/images/sort.png)
