@@ -1,4 +1,5 @@
 const express = require('express')
+const session = require('express-session')
 const exphbrs = require('express-handlebars')
 const Restaurant = require('./models/Restaurant')
 const methodOverride = require('method-override')
@@ -11,6 +12,14 @@ const port = 3000
 
 app.engine('hbs', exphbrs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
+
+app.use(
+	session({
+		secret: 'MyRestaurantSecret',
+		resave: false,
+		saveUninitialized: true,
+	})
+)
 
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
