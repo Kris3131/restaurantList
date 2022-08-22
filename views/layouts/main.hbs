@@ -26,12 +26,15 @@
 							class='d-inline-block align-top'
 							alt='我的餐廳清單'
 						/>
-						我的餐廳清單
+						{{#if isAuthenticated}}
+							{{user.name}}的餐廳清單
+						{{/if}}
 					</a>
-					<a
-						href='/restaurants/new'
-						class='btn btn-primary text-white ml-3'
-					>新增</a>
+					{{#if isAuthenticated}}
+						<a href='/user/logout' class='btn btn-danger'>Logout</a>
+					{{else}}
+						<a href='/user/login' class='btn btn-success'>Login</a>
+					{{/if}}
 				</div>
 			</nav>
 			<div class='banner'></div>
