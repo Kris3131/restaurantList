@@ -1,7 +1,7 @@
 const express = require('express')
 const session = require('express-session')
+const usePassport = require('./config/passport')
 const exphbrs = require('express-handlebars')
-const Restaurant = require('./models/Restaurant')
 const methodOverride = require('method-override')
 const routes = require('./routes')
 
@@ -24,7 +24,7 @@ app.use(
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
-
+usePassport(app)
 app.use(routes)
 
 app.listen(port, () => {
