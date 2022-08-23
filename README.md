@@ -1,10 +1,15 @@
 # Restaurant List
 
-使用者可以在首頁看到所有餐廳與餐廳資料，並可以透過『新增』，增加喜愛的餐廳，『修改』調整喜愛餐廳的內容，『刪除』移除喜愛的餐廳。
+使用者可以在首頁註冊後登入看到所有餐廳與餐廳資料，並可以透過『新增』，增加喜愛的餐廳，『修改』調整喜愛餐廳的內容，『刪除』移除喜愛的餐廳。
 
 ## 專案功能
 
-提供使用者清楚呈現的餐廳列表，快速精準的搜尋喜愛餐廳。
+提供使用者登入後，查看餐廳列表，搜尋喜愛餐廳。
+
+0. 登入：
+
+- 以 Email 註冊
+- 第三方登入(Facebook)
 
 1. 直接呈現餐廳列表:
 
@@ -37,14 +42,26 @@
 - [mongoose@6.0.5][mongoose]
 - [dotenv@16.0.1][dotenv]
 - [method-override@3.0.0][method-override]
+- [passport@0.4.1][passport]
+- [passport-facebook@3.0.0][passport-facebook]
+- [passport-local@1.0.0][passport-local]
+- [bcryptjs@2.4.3][bcryptjs]
+- [connect-flash@0.1.1][connect-flash]
+- [express-session@1.17.1][express-session]
 
-[node]: https://nodejs.org/en/
-[nodemon]: https://www.npmjs.com/package/nodemon
-[express]: https://www.npmjs.com/package/express
-[exphbs]: https://www.npmjs.com/package/express-handlebars
-[mongoose]: https://www.npmjs.com/package//mongoose
-[dotenv]: https://www.npmjs.com/package/dotenv
-[method-override]: https://www.npmjs.com/package/method-override
+  [node]: https://nodejs.org/en/
+  [nodemon]: https://www.npmjs.com/package/nodemon
+  [express]: https://www.npmjs.com/package/express
+  [exphbs]: https://www.npmjs.com/package/express-handlebars
+  [mongoose]: https://www.npmjs.com/package//mongoose
+  [dotenv]: https://www.npmjs.com/package/dotenv
+  [method-override]: https://www.npmjs.com/package/method-override
+  [passport]: https://www.npmjs.com/package/passport
+  [passport-facebook]: https://www.npmjs.com/package/passport-facebook
+  [passport-local]: https://www.npmjs.com/package/passport-local
+  [bcryptjs]: https://www.npmjs.com/package/bcryptjs
+  [connect-flash]: https://www.npmjs.com/package/connect-flash
+  [express-session]: https://www.npmjs.com/package/express-session
 
 ## 安裝與執行步驟
 
@@ -63,8 +80,24 @@
    - 將 MONGO_URI 放進檔案中
 6. 建立種子資料與資料庫連接
    `npm run seed`
+7. User 種子 資料測試：
+
+```json
+  {
+   "name": "user1",
+   "email": "user1@example.com",
+   "password": "12345678"
+  },
+  {
+   "name": "user2",
+   "email": "user2@example.com",
+   "password": "12345678"
+  }
+
+```
 
 ## 專案畫面
 
-![Alt Text](./public/images/restaurantList.gif)
-![Alt Text](./public/images/sort.png)
+1. 登入： ![Alt Text](./public/images/login.gif)
+2. 餐廳 新增 / 修改 / 刪除 ![Alt Text](./public/images/restaurantList.gif)
+3. 排序： ![Alt Text](./public/images/sort.png)
