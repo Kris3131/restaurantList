@@ -1,6 +1,7 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const User = require('../models/User')
+const bcrypt = require('bcryptjs')
 
 module.exports = (app) => {
 	// middleware initialize
@@ -17,7 +18,12 @@ module.exports = (app) => {
 							done(null, false, {
 								message: req.flash('warning_msg', `找不到 Email 用戶資料`),
 							})
-						if (user.password !== password) done(null, false)
+						bcrypt.compare(password, user.password).then((isMatch) => {
+							if (!isMatch)
+								done(null, false, {
+									message: req.flash('warning_msg', 'Email 或 密碼有誤'),
+								})
+						})
 						return done(null, user)
 					})
 					.catch((err) => done(err, false))
