@@ -1,32 +1,46 @@
-const express = require('express');
-const exphbrs = require('express-handlebars');
-const restaurantList = require('./restaurant.json');
+const express = require('express')
+const session = require('express-session')
+const usePassport = require('./config/passport')
+const exphbrs = require('express-handlebars')
+const methodOverride = require('method-override')
+const flash = require('connect-flash')
+const routes = require('./routes')
 
-const app = express();
-const port = 3000;
+if (process.env.NODE_ENV !== 'production') {
+	require('dotenv').config()
+}
+require('./config/mongoose')
 
-app.engine('handlebars', exphbrs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
-app.use(express.static('public'));
+const app = express()
+const port = 3000
 
-app.get('/', (req, res) => {
-	res.render('index', { restaurants: restaurantList.results });
-});
+app.engine('hbs', exphbrs({ defaultLayout: 'main', extname: '.hbs' }))
+app.set('view engine', 'hbs')
 
-app.get('/restaurants/:restaurant_id', (req, res) => {
-	const restaurant = restaurantList.results.find(
-		(rest) => rest.id.toString() === req.params.restaurant_id
-	);
-	res.render('show', { restaurant });
-});
-app.get('/search', (req, res) => {
-	const keyword = req.query.keyword;
-	const searchResult = restaurantList.results.filter(
-		(rest) => rest.name.includes(keyword) || rest.category.includes(keyword)
-	);
-	res.render('index', { restaurants: searchResult, keyword: keyword });
-});
+app.use(
+	session({
+		secret: process.env.SESSION_SECRET,
+		resave: false,
+		saveUninitialized: true,
+	})
+)
+
+app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
+usePassport(app)
+app.use(flash())
+
+app.use((req, res, next) => {
+	res.locals.isAuthenticated = req.isAuthenticated()
+	res.locals.user = req.user
+	res.locals.success_msg = req.flash('success_msg')
+	res.locals.warning_msg = req.flash('warning_msg')
+	next()
+})
+
+app.use(routes)
 
 app.listen(port, () => {
-	console.log(`http://localhost:${port}`);
-});
+	console.log(`http://localhost:${port}`)
+})
